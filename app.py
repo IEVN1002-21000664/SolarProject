@@ -17,7 +17,7 @@ def calcular_paneles():
     ancho = float(data['ancho'])
     alto = float(data['alto'])
 
-    if ciudad_index < 0 or ciudad_index >= len(horas_solares):
+    if ciudad_index < 0 or ciudad_index >= (len(horas_solares))+1:
         return jsonify({"error": "Ciudad no válida"}), 400
 
     ciudad = horas_solares.iloc[ciudad_index]
