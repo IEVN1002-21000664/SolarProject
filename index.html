@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora Solar</title>
+</head>
+<body>
+  <h1>Paneles Solares XYZ</h1>
+  <p>Simula tu instalación solar:</p>
+  <form id="formulario">
+    <label>Ciudad (índice): <input type="number" name="ciudad_index" required /></label><br/>
+    <label>kWh mensuales: <input type="number" name="kwh_gastados" required /></label><br/>
+    <label>Ancho azotea (m): <input type="number" name="ancho" step="0.1" required /></label><br/>
+    <label>Largo azotea (m): <input type="number" name="alto" step="0.1" required /></label><br/>
+    <button type="submit">Calcular</button>
+  </form>
+
+  <pre id="resultado"></pre>
+
+  <script>
+    document.getElementById('formulario').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const datos = {
+        ciudad_index: document.querySelector('[name="ciudad_index"]').value,
+        kwh_gastados: document.querySelector('[name="kwh_gastados"]').value,
+        ancho: document.querySelector('[name="ancho"]').value,
+        alto: document.querySelector('[name="alto"]').value
+      };
+
+      const res = await fetch('https://TUDOMINIO.onrender.com/calcular', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datos)
+      });
+
+      const json = await res.json();
+      document.getElementById('resultado').textContent = JSON.stringify(json, null, 2);
+    });
+  </script>
+</body>
+</html>
