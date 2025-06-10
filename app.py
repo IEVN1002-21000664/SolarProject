@@ -1,9 +1,10 @@
 from flask import Flask, request, jsonify
 import pandas as pd
 import math
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app) 
 # Cargar datos una sola vez
 horas_solares = pd.read_csv('Horas_solares.csv').dropna(subset=['Ciudad', 'Insolacion'])
 catalogo_proveedor = pd.read_csv('Catalogo_proveedor.csv').dropna(subset=['Clave', 'Potencia', 'Ancho', 'Alto'])
