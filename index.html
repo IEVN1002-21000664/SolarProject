@@ -3,40 +3,103 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Calculadora Solar</title>
+  <title>TECNOLÓGICA SOLAR - Calculadora Solar</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/forms@0.5.5/dist/forms.min.js"></script>
 </head>
-<body>
-  <h1>Paneles Solares XYZ</h1>
-  <p>Simula tu instalación solar:</p>
-  <form id="formulario">
-    <label>Ciudad (índice): <input type="number" name="ciudad_index" required /></label><br/>
-    <label>kWh mensuales: <input type="number" name="kwh_gastados" required /></label><br/>
-    <label>Ancho azotea (m): <input type="number" name="ancho" step="0.1" required /></label><br/>
-    <label>Largo azotea (m): <input type="number" name="alto" step="0.1" required /></label><br/>
-    <button type="submit">Calcular</button>
-  </form>
+<body class="bg-gray-50 text-gray-800">
 
-  <pre id="resultado"></pre>
+  <!-- Hero / Header -->
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <svg class="w-8 h-8 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm0 16a4 4 0 100-8 4 4 0 000 8zm8.66-7.66a1 1 0 010 1.41l-.7.71a1 1 0 01-1.41-1.42l.7-.7a1 1 0 011.41 0zM4.05 4.05a1 1 0 011.41 0l.7.7a1 1 0 11-1.42 1.42l-.7-.7a1 1 0 010-1.42zm15.9 15.9a1 1 0 01-1.41 0l-.7-.7a1 1 0 011.42-1.42l.7.7a1 1 0 010 1.42zM2 12a1 1 0 011-1h1a1 1 0 110 2H3a1 1 0 01-1-1zm17 0a1 1 0 011-1h1a1 1 0 110 2h-1a1 1 0 01-1-1zM4.05 19.95a1 1 0 000-1.41l-.7-.7a1 1 0 10-1.42 1.42l.7.7a1 1 0 001.42 0zM12 20a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1z" />
+        </svg>
+        <span class="text-xl font-bold text-gray-800">TECNOLÓGICA SOLAR</span>
+      </div>
+      <nav>
+        <a href="#calculadora" class="text-sm text-blue-600 hover:underline">Calculadora</a>
+      </nav>
+    </div>
+  </header>
 
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-yellow-100 to-blue-100 py-20">
+    <div class="max-w-4xl mx-auto text-center px-6">
+      <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Calcula tu instalación solar</h1>
+      <p class="text-lg text-gray-700 mb-6">
+        Descubre cuántos paneles necesitas para cubrir tu consumo eléctrico mensual con energía solar.
+      </p>
+      <a href="#calculadora" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-semibold">
+        Empezar ahora
+      </a>
+    </div>
+  </section>
+
+  <!-- Formulario -->
+  <section id="calculadora" class="py-16 bg-white">
+    <div class="max-w-xl mx-auto px-6 bg-white rounded-lg shadow-md py-10">
+      <h2 class="text-2xl font-bold mb-6 text-center">Simula tu instalación</h2>
+      <form id="formulario" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium">Ciudad (índice)</label>
+          <input type="number" name="ciudad_index" required class="mt-1 w-full rounded border-gray-300 shadow-sm focus:ring-yellow-500 focus:border-yellow-500" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Consumo mensual (kWh)</label>
+          <input type="number" name="kwh_gastados" required class="mt-1 w-full rounded border-gray-300 shadow-sm focus:ring-yellow-500 focus:border-yellow-500" />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium">Ancho azotea (m)</label>
+            <input type="number" name="ancho" step="0.1" required class="mt-1 w-full rounded border-gray-300 shadow-sm focus:ring-yellow-500 focus:border-yellow-500" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Largo azotea (m)</label>
+            <input type="number" name="alto" step="0.1" required class="mt-1 w-full rounded border-gray-300 shadow-sm focus:ring-yellow-500 focus:border-yellow-500" />
+          </div>
+        </div>
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg">
+          Calcular
+        </button>
+      </form>
+
+      <div id="resultado" class="mt-6 bg-gray-100 text-sm rounded p-4 font-mono whitespace-pre-wrap text-gray-700"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 py-6 mt-10">
+    <div class="max-w-4xl mx-auto px-6 text-center text-gray-600 text-sm">
+      &copy; 2025 TECNOLÓGICA SOLAR. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <!-- JS para conectar con la API -->
   <script>
     document.getElementById('formulario').addEventListener('submit', async function(e) {
       e.preventDefault();
 
       const datos = {
-        ciudad_index: document.querySelector('[name="ciudad_index"]').value,
-        kwh_gastados: document.querySelector('[name="kwh_gastados"]').value,
-        ancho: document.querySelector('[name="ancho"]').value,
-        alto: document.querySelector('[name="alto"]').value
+        ciudad_index: parseInt(document.querySelector('[name="ciudad_index"]').value),
+        kwh_gastados: parseFloat(document.querySelector('[name="kwh_gastados"]').value),
+        ancho: parseFloat(document.querySelector('[name="ancho"]').value),
+        alto: parseFloat(document.querySelector('[name="alto"]').value)
       };
 
-      const res = await fetch('https://solarproject.onrender.com/calcular', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(datos)
-      });
+      try {
+        const res = await fetch('https://solarproject.onrender.com/calcular', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(datos)
+        });
 
-      const json = await res.json();
-      document.getElementById('resultado').textContent = JSON.stringify(json, null, 2);
+        const json = await res.json();
+        document.getElementById('resultado').textContent = JSON.stringify(json, null, 2);
+      } catch (err) {
+        document.getElementById('resultado').textContent = "❌ Error al conectarse con el servidor.";
+      }
     });
   </script>
 </body>
