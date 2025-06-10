@@ -17,7 +17,7 @@
         <span class="text-xl font-bold text-gray-800">TECNOLÓGICA SOLAR</span>
       </div>
       <nav>
-        <a href="#calculadora" class="text-sm text-blue-600 hover:underline">Calculadora</a>
+        <a href="#calculadora" class="text-sm text-grey-200 hover:underline">Calculadora</a>
       </nav>
     </div>
   </header>
@@ -41,7 +41,7 @@
       <h2 class="text-2xl font-bold mb-6 text-center">Simula tu instalación</h2>
       <form id="formulario" class="space-y-4">
         <div>
-          <label class="block text-sm font-medium">Ciudad (índice)</label>
+          <label class="block text-sm font-medium">Selecciona tu ciudad</label>
 <select name="ciudad_index" required class="w-full border border-gray-300 rounded px-3 py-2">
   <option value="0" disabled selected>Selecciona tu ciudad</option>
   <option value="1">Aguascalientes</option>
@@ -161,8 +161,11 @@
 else if (json.mensaje) {
         resultado.innerHTML = `
           <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded shadow-md text-yellow-800">
-            <h3 class="text-lg font-semibold mb-2">😕 Lo sentimos</h3>
-            <p>${json.mensaje}. Podrías intentar con otro tipo de instalación o contáctanos para una asesoría personalizada.</p>
+            <h3 class="text-lg font-semibold mb-2">😲 CONTÁCTANOS</h3>
+            <p>¿Necesitas ayuda para cubrir tu consumo de energía?</p>
+            <p>Contactate con alguno de nuestros técnicos para encontrar soluciones a tu medida :)</p>
+      <button class="mt-4 bg-blue-500 text-white px-2 py-3 rounded hover:bg-blue-700 transition font-semibold">📱 Contactar</button>
+
           </div>
         `;
       } else if (json.error) {
@@ -182,7 +185,7 @@ else if (json.mensaje) {
     } catch (err) {
       resultado.innerHTML = `
         <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded shadow-md text-red-800">
-          <h3 class="text-lg font-semibold mb-2">⚠️ Error del servidor</h3>
+          <h3 class="text-lg font-semibold mb-2">⚠️ Error</h3>
           <p>Ocurrió un problema al procesar tu solicitud. Inténtalo más tarde.</p>
         </div>
       `;
